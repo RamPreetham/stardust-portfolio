@@ -139,6 +139,22 @@ body {
   background-position: center;
   filter: brightness(0.8);
 }
+.hero-bg-image--animated {
+  /* slow pan from left to right and back */
+  background-position: 0% 50%;
+  animation: hero-pan 40s linear infinite alternate;
+}
+
+@keyframes hero-pan {
+  0% {
+    background-position: 0% 50%;   /* left */
+    transform: scale(1.05);        /* slight zoom-in */
+  }
+  100% {
+    background-position: 100% 50%; /* right */
+    transform: scale(1.1);         /* tiny bit more zoom for depth */
+  }
+}
 
 .hero-overlay {
   position: absolute;
@@ -262,7 +278,7 @@ body {
 
 .section-title {
   font-size: 1.8rem;
-  margin: 0 0 8px;
+  margin: 0px 0px 20px 0px;
 }
 
 .section-subtitle {
@@ -328,7 +344,7 @@ body {
 .tech-card ul {
   margin: 0;
   padding-left: 18px;
-  color: var(--muted);
+  color: white;
   font-size: 0.9rem;
 }
 
@@ -465,8 +481,9 @@ body {
 }
 
 .delivery-card {
+  top: 50px;
   border-radius: 20px;
-  border: 1px dashed var(--accent-soft);
+  border: 3px dashed var(--accent-soft);
   padding: 18px 16px 16px;
 }
 
@@ -535,11 +552,6 @@ body {
 /* SUMMARY – image on the RIGHT, no text overlap */
 .section--summary .section-inner {
   background-color: rgba(5, 3, 10, 0.96);
-  background-image: url('/images/summary-future-grid.png');
-  background-repeat: repeat;
-  background-position: right center;
-  background-size: 40% auto;                 /* image takes ~40% width */
-  padding-right: clamp(220px, 30%, 360px);   /* keep text away from image */
 }
 
 .section--tech .section-inner {
@@ -547,6 +559,7 @@ body {
   background-image: url('/images/section-tech-cloud.png');
   background-size: cover;
   background-position: center right;
+  background-size: 50% auto;
   background-repeat: no-repeat;
 }
 
@@ -587,14 +600,54 @@ body {
   background-repeat: no-repeat;
 }
 
-.section--delivery .section-inner {
-  background-color: rgba(5, 3, 10, 0.96);
-  background-image: url('/images/section-delivery-diagram.png');
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 50% 100%;
+.section-inner--delivery {
+  margin-top: auto;
+  bottom: auto;
+  position: relative;
+  overflow: hidden;
 }
+
+/* glowing horizontal line that sweeps across the section */
+.section-inner--delivery::before {
+  content: "";
+  position: absolute;
+  left: -40%;
+  right: -40%;
+  top: 52%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 138, 0, 0.8),
+    transparent
+  );
+  opacity: 0.6;
+  transform: translateX(-50%);
+  animation: delivery-scan 4.5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes delivery-scan {
+  0% {
+    transform: translateX(-60%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(40%);
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
 /* EDUCATION – image on the LEFT */
 .section--education .section-inner {
   background-color: rgba(5, 3, 10, 0.96);

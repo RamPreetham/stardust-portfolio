@@ -147,6 +147,18 @@ export const accentureImpact = {
     },
   ],
   delivery: [
+    {
+      title: "CI/CD Pipeline",
+      body: "Jenkins pipeline enabling a 15-member team to deliver features faster and reduce client release time-to-market.",
+    },
+    {
+      title: "Frontend Optimization",
+      body: "Lazy-loading and PWA improvements reduced page load times by 20%, lifting engagement and conversion.",
+    },
+    {
+      title: "Test Automation",
+      body: "Automated CRE-engine testing accelerated validation cycles by 328%, freeing consultants for high-value work.",
+    },
   ],
 };
 

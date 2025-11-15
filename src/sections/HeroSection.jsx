@@ -1,15 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { hero } from '../data/content.js';
+import heroServers from "../../images/hero-servers.png";
 
 function HeroSection() {
   return (
     <section id="hero" className="hero hero--full">
+      {/* Background */}
       <div
-        className="hero-bg-image"
-        style={{ backgroundImage: `url(${hero.backgroundImage})` }}
+        className="hero-bg-image hero-bg-image--animated"
+        style={{ backgroundImage: `url(${heroServers})` }}
       />
+
       <div className="hero-overlay" />
+
+      {/* Foreground Content */}
       <motion.div
         className="hero-content"
         initial={{ opacity: 0, y: 24 }}
