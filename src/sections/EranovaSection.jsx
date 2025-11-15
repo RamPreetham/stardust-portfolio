@@ -4,13 +4,8 @@ import { useEffect } from 'react';
 import { eranovaAchievements } from '../data/content.js';
 
 function ProgressCircle({ value }) {
-  const controls = useAnimation();
   const radius = 70;
   const circumference = 2 * Math.PI * radius;
-
-  useEffect(() => {
-    controls.start({ strokeDashoffset: circumference * (1 - value / 100) });
-  }, [controls, circumference, value]);
 
   return (
     <svg className="progress-ring" width="180" height="180">
@@ -22,6 +17,8 @@ function ProgressCircle({ value }) {
         strokeWidth="12"
         fill="transparent"
       />
+
+      {/* animated ring */}
       <motion.circle
         className="progress-ring__value"
         cx="90"
@@ -30,10 +27,18 @@ function ProgressCircle({ value }) {
         strokeWidth="12"
         fill="transparent"
         strokeDasharray={circumference}
-        strokeDashoffset={circumference}
-        animate={controls}
-        transition={{ duration: 1.2, ease: 'easeOut' }}
+        // start fully hidden, then animate to the percentage
+        initial={{ strokeDashoffset: circumference }}
+        animate={{ strokeDashoffset: circumference * (1 - value / 100) }}
+        transition={{
+          duration: 1.6,
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "reverse", // goes back and forth -> loading motion
+        }}
+        style={{ transformOrigin: "50% 50%" }}
       />
+
       <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle">
         {value}%
       </text>
