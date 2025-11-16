@@ -693,6 +693,215 @@ body {
   }
 }
 
+/*
+Modal Form Styling
+*/
+/* Futuristic neon stardust contact modal */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(14px);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255, 138, 0, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 90%, rgba(120, 180, 255, 0.16), transparent 55%),
+    rgba(0, 0, 0, 0.7);
+}
+
+/* container with layered glows + stardust overlay */
+.modal-container {
+  position: relative;
+  width: min(90%, 480px);
+  padding: 24px 24px 20px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 138, 0, 0.6);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 138, 0, 0.18), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(120, 180, 255, 0.16), transparent 55%),
+    rgba(5, 3, 10, 0.96);
+  box-shadow:
+    0 0 32px rgba(255, 138, 0, 0.7),
+    0 18px 50px rgba(0, 0, 0, 0.95);
+  overflow: hidden;
+}
+
+/* drifting stardust layer */
+.modal-container::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.7) 0, transparent 1px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.4) 0, transparent 1px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.25) 0, transparent 1px);
+  background-size: 260px 260px, 420px 420px, 620px 620px;
+  background-position: 0 0, 50% 40%, 100% 80%;
+  opacity: 0.3;
+  pointer-events: none;
+  animation: modal-stardust-drift 26s linear infinite;
+}
+
+/* subtle scanning glow */
+.modal-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    transparent 70%
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: modal-sheen 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* close button */
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: rgba(8, 5, 15, 0.9);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 138, 0, 0.6);
+  color: var(--accent);
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(255, 138, 0, 0.8);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  z-index: 1;
+}
+
+.modal-close:hover {
+  transform: scale(1.05);
+  background: rgba(255, 138, 0, 0.18);
+  box-shadow: 0 0 18px rgba(255, 138, 0, 1);
+}
+
+/* heading + layout inside modal */
+
+.modal-container h2 {
+  margin: 0 0 16px;
+  font-size: 1.4rem;
+  text-shadow:
+    0 0 12px rgba(255, 138, 0, 0.9),
+    0 0 26px rgba(255, 138, 0, 0.7);
+}
+
+.modal-container form {
+  position: relative;
+  z-index: 1; /* above stardust layers */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* inputs */
+
+.modal-container input,
+.modal-container select,
+.modal-container textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: rgba(8, 5, 15, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text);
+  font-size: 0.9rem;
+  outline: none;
+  transition:
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    background 0.16s ease,
+    transform 0.08s ease;
+}
+
+.modal-container textarea {
+  border-radius: 16px;
+  min-height: 90px;
+  resize: vertical;
+}
+
+.modal-container input::placeholder,
+.modal-container textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.modal-container input:focus,
+.modal-container select:focus,
+.modal-container textarea:focus {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 1px rgba(255, 138, 0, 0.6),
+    0 0 20px rgba(255, 138, 0, 0.7);
+  background: rgba(10, 6, 18, 0.98);
+  transform: translateY(-1px);
+}
+
+/* status text */
+
+.modal-status {
+  margin-top: 6px;
+  font-size: 0.85rem;
+}
+
+.modal-status.success {
+  color: #4ade80;
+}
+
+.modal-status.error {
+  color: #fb7185;
+}
+
+/* keyframes */
+
+@keyframes modal-stardust-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-40px, -20px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes modal-sheen {
+  0%, 40% {
+    opacity: 0;
+  }
+  45% {
+    opacity: 0.6;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .modal-container {
+    padding: 20px 18px 16px;
+    width: min(92%, 420px);
+  }
+}
+
 
 /* Responsive */
 
