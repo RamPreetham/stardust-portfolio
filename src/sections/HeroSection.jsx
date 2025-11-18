@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { hero } from '../data/content.js';
 import heroServers from "../../images/hero-servers.png";
-import ContactModal from "../components/ContactModal";  // <-- make sure this path is correct
+import ContactModal from "../components/ContactModal"; 
 
 function HeroSection() {
   const [showForm, setShowForm] = useState(false);
@@ -29,7 +29,7 @@ function HeroSection() {
           <p className="hero-title">{hero.title}</p>
 
           <div className="hero-actions">
-            {/* OPEN MODAL BUTTON */}
+            {/* This opens the modal */}
             <button
               className="btn primary"
               onClick={() => setShowForm(true)}
@@ -37,7 +37,6 @@ function HeroSection() {
               {hero.ctaPrimary}
             </button>
 
-            {/* LinkedIn Button */}
             <a
               href="https://www.linkedin.com/in/preetham-tammana"
               target="_blank"
@@ -50,13 +49,8 @@ function HeroSection() {
         </motion.div>
       </section>
 
-      {/* MODAL */}
-      {showForm && (
-        <ContactModal
-          open={showForm}
-          onClose={() => setShowForm(false)}
-        />
-      )}
+      {/* Modal, shown when showForm is true */}
+      <ContactModal open={showForm} onClose={() => setShowForm(false)} />
     </>
   );
 }
