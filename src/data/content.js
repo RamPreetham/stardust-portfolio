@@ -1,10 +1,10 @@
 export const hero = {
   name: "Preetham Tammana",
   title:
-    "Cloud Application Developer @ IDEXX | Ex-AmEx | Building Scalable Cloud Solutions | Backend Innovation",
+    "Cloud Application Developer @ IDEXX | Ex-AmEx | Building Scalable Cloud Solutions | Backend Innovation| AI Agents Devlopment",
   ctaPrimary: "Get in Touch",
   ctaSecondary: "LinkedIn Profile",
-  backgroundImage: "/images/hero-servers.png", // replace with your own image path
+  backgroundImage: "/images/hero-servers.png", 
 };
 
 export const summary = {
@@ -17,6 +17,14 @@ export const summary = {
 
 export const techStacks = [
   {
+    category:"Artificial Intelligence",
+    items:[
+      "Deep Learning",
+      "Agent Development",
+      "AI Automation",
+      "n8n workflows",
+      "LLM Integrations",
+    ],
     category: "Cloud & DevOps",
     items: [
       "Terraform",
